@@ -16,10 +16,6 @@ export const mainMenuPrompt = async () => {
           name: 'Añadir un gasto',
         },
         {
-          value: 'newSpent',
-          name: `${new Date()}`,
-        },
-        {
           value: 'quit',
           name: 'Quit',
         },

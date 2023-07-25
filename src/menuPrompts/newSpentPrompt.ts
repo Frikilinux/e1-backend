@@ -1,7 +1,8 @@
 import inquirer from 'inquirer'
+import uuid from '../utils/uuid'
 
 export const newSpentPrompt = async () => {
-  return await inquirer.prompt([
+  const spent = await inquirer.prompt([
     {
       type: 'input',
       name: 'product',
@@ -13,4 +14,6 @@ export const newSpentPrompt = async () => {
       message: 'Importe del consumo: $',
     },
   ])
+
+  return { ...spent, date: `${new Date()}`, id: uuid() }
 }
