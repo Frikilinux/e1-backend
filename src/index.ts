@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import { createDb, newSpent } from './helpers/tasks'
+import { createDb, deleteSpent, newSpent } from './helpers/tasks'
 import { mainMenuPrompt } from './menuPrompts/mainMenu'
 
 const main = async () => {
@@ -14,6 +14,9 @@ const main = async () => {
         break
       case 'newSpent':
         await newSpent()
+        break
+      case 'deleteSpent':
+        await deleteSpent()
         break
       case 'quit':
         run = false

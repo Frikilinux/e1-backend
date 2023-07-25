@@ -6,7 +6,7 @@ const uuid = () => {
     .map((e, i) => {
       return i === 8 || i === 13 || i === 18 || i === 23
         ? '-'
-        : hexDigits[Math.ceil(Math.random() * hexDigits.length - 1)]
+        : hexDigits[Math.floor(Math.random() * hexDigits.length)]
     })
     .join('')
 }

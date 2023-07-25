@@ -16,6 +16,10 @@ export const mainMenuPrompt = async () => {
           name: 'Añadir un gasto',
         },
         {
+          value: 'deleteSpent',
+          name: 'Eliminar Gasto',
+        },
+        {
           value: 'quit',
           name: 'Quit',
         },

@@ -1,24 +1,24 @@
 import chalk from 'chalk'
 import fs from 'fs'
 
-export const setFile = (fileName: string, content = '[]') => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(`./${fileName}.json`, content, (err) => {
-      err && reject(err)
-      resolve(
-        console.log(chalk.blue.bold(`DB creada en el archivo ${fileName}.json`))
-      )
-    })
-  })
-}
+// export const setFile = (fileName: string, content = '[]') => {
+//   return new Promise((resolve, reject) => {
+//     fs.writeFile(`./${fileName}.json`, content, (err) => {
+//       err && reject(err)
+//       resolve(
+//         console.log(chalk.blue.bold(`DB creada en el archivo ${fileName}.json`))
+//       )
+//     })
+//   })
+// }
 
-export const saveDb = (fileName:string, content) => {
+export const saveDb = ({ fileName, content = [], message }) => {
   return new Promise((resolve, reject) => {
     fs.writeFile(`./${fileName}.json`, JSON.stringify(content), (err) => {
       if (err) {
         reject(err)
       }
-      resolve(console.log(chalk.blue.bold(`Nuevo gasto guardado`)))
+      resolve(console.log(chalk.blue.bold(message)))
     })
   })
 }

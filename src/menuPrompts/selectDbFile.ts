@@ -2,12 +2,12 @@ import inquirer from 'inquirer'
 import { listAllDb } from '../helpers/fsMethods'
 
 // Any everywere
-export const selectDbFile = async (dbFiles: any) => {
+export const selectList = async (dbFiles: any, message: string) => {
   return await inquirer.prompt([
     {
       type: 'list',
       name: 'name',
-      message: 'Selecione una base de datos',
+      message,
       choices: dbFiles
     },
   ])
