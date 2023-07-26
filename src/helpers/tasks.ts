@@ -3,6 +3,13 @@ import { createNewDbPrompt } from '../menuPrompts/createDbFile'
 import { newSpentPrompt } from '../menuPrompts/newSpentPrompt'
 import { selectList } from '../menuPrompts/selectDbFile'
 
+interface IUser {
+  product: string
+  price: number
+  date: string
+  id: string
+}
+
 export const createDb = async () => {
   const newDb = await createNewDbPrompt()
   await saveDb({
@@ -17,8 +24,8 @@ export const newSpent = async () => {
     fileList,
     'Seleccione una base de datos'
   )
-  const spent = await newSpentPrompt()
-  const dbData = await getDbData(selectedFile.name)
+  const spent: IUser = await newSpentPrompt()
+  const dbData: IUser[] = await getDbData(selectedFile.name)
   await saveDb({
     fileName: selectedFile.name,
     content: [...dbData, spent],
@@ -45,7 +52,7 @@ export const deleteSpent = async () => {
   }
   const selectedSpent = await selectList(spentsData, 'Seleccione un gasto')
 
-  const newData:[] = [...dbData].filter(
+  const newData: IUser[] = [...dbData].filter(
     (spent) => spent.id !== selectedSpent.name
   )
 

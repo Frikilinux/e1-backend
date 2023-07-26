@@ -1,7 +1,14 @@
 import inquirer from 'inquirer'
 import uuid from '../utils/uuid'
 
-export const newSpentPrompt = async () => {
+interface IUser {
+  product: string,
+  price: number,
+  date: string,
+  id: string
+};
+
+export const newSpentPrompt = async (): Promise<IUser> => {
   const spent = await inquirer.prompt([
     {
       type: 'input',
