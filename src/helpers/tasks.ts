@@ -6,7 +6,7 @@ import { ListOptions, Spent } from '../interfaces/interfaces'
 import { Answers } from 'inquirer'
 import { dataTemplate } from './showDataTemplate'
 
-export const createDb = async () => {
+export const createDb = async (): Promise<void> => {
   const newDb = await createNewDbPrompt()
   await saveDb({
     fileName: newDb.name,
@@ -49,7 +49,7 @@ export const newSpent = async (): Promise<void> => {
   })
 }
 
-export const showSpents = async () => {
+export const showSpents = async (): Promise<void> => {
   const { dbData } = await listData()
 
   dbData.forEach((spent) => {
@@ -57,7 +57,7 @@ export const showSpents = async () => {
   })
 }
 
-export const deleteSpent = async () => {
+export const deleteSpent = async (): Promise<void> => {
   const { selectedFile, dbData } = await listData()
 
   const spentsData = (): ListOptions[] => {
@@ -68,7 +68,7 @@ export const deleteSpent = async () => {
       }
     })
   }
-  const selectedSpent: Answers = await selectList(
+  const selectedSpent = await selectList(
     spentsData(),
     'Seleccione el gasto a eliminar:'
   )
