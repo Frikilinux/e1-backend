@@ -1,5 +1,5 @@
 {
-  "name": "E1 CLI App",
+  "name": "e1-cli-app",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
