@@ -1,14 +1,9 @@
 import inquirer from 'inquirer'
 import uuid from '../utils/uuid'
+import { Spent } from '../interfaces/interfaces'
+import moment from 'moment'
 
-interface IUser {
-  product: string,
-  price: number,
-  date: string,
-  id: string
-};
-
-export const newSpentPrompt = async (): Promise<IUser> => {
+export const newSpentPrompt = async (): Promise<Spent> => {
   const spent = await inquirer.prompt([
     {
       type: 'input',
@@ -22,5 +17,9 @@ export const newSpentPrompt = async (): Promise<IUser> => {
     },
   ])
 
-  return { ...spent, date: `${new Date()}`, id: uuid() }
+  return {
+    ...spent,
+    date: `${moment().format('D MMMM YYYY, HH:mm')}`,
+    id: uuid(),
+  }
 }

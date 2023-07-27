@@ -1,19 +1,25 @@
-import inquirer from 'inquirer'
-import { createDb, deleteSpent, newSpent } from './helpers/tasks'
+import { Answers } from 'inquirer'
+import { createDb, deleteSpent, newSpent, removeDB, showSpents } from './helpers/tasks'
 import { mainMenuPrompt } from './menuPrompts/mainMenu'
 
 const main = async () => {
   let run = true
   // start
   while (run) {
-    const mainMenuAns = await mainMenuPrompt()
+    const mainMenuAnswer: Answers = await mainMenuPrompt()
 
-    switch (mainMenuAns.mainMenu) {
+    switch (mainMenuAnswer.mainMenu) {
       case 'createDb':
         await createDb()
         break
+      case 'removeDB':
+        await removeDB()
+        break
       case 'newSpent':
         await newSpent()
+        break
+      case 'showSpents':
+        await showSpents()
         break
       case 'deleteSpent':
         await deleteSpent()

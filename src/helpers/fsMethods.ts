@@ -1,21 +1,10 @@
 import chalk from 'chalk'
 import fs from 'fs'
-
-interface IUser {
-  product: string
-  price: number
-  date: string
-  id: string
-}
-
-interface dbList {
-  value: string
-  name: string
-}
+import { ListOptions, Spent } from '../interfaces/interfaces'
 
 interface saveDbOptions {
   fileName?: string
-  content?: IUser[]
+  content?: Spent[]
   message?: string
 }
 
@@ -29,12 +18,26 @@ export const saveDb = ({
       if (err) {
         reject(err)
       }
-      resolve(console.log(chalk.blue.bold(message)))
+      resolve(console.log(chalk.bgBlue(`\n  ${message}  \n`)))
     })
   })
 }
 
-export const listAllDb = (dbFolder: string = './'): Promise<dbList[]> => {
+export const removeFile = async ({
+  fileName,
+  message,
+}: saveDbOptions): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    fs.unlink(`./${fileName}.json`, (err) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(console.log(chalk.bgBlue(`\n  ${message}  \n`)))
+    })
+  })
+}
+
+export const listAllDb = (dbFolder: string = './'): Promise<ListOptions[]> => {
   return new Promise((resolve, reject) => {
     fs.readdir(dbFolder, (err, files) => {
       err && reject(err)
@@ -48,7 +51,7 @@ export const listAllDb = (dbFolder: string = './'): Promise<dbList[]> => {
   })
 }
 
-export const getDbData = (fileName: string): Promise<IUser[]> => {
+export const getDbData = (fileName: string): Promise<Spent[]> => {
   return new Promise((resolve, reject) => {
     fs.readFile(`./${fileName}.json`, 'utf8', (err, content) => {
       err && reject(err)

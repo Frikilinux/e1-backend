@@ -1,10 +1,10 @@
-import inquirer from 'inquirer'
+import inquirer, { InputQuestion } from 'inquirer'
 
-export const createNewDbPrompt = async () => {
+export const createNewDbPrompt = async (): Promise<InputQuestion> => {
   return await inquirer.prompt([
     {
       type: 'input',
-      name: 'dbName',
+      name: 'name',
       message: 'Ingrese el nombre de la db:',
     },
   ])
